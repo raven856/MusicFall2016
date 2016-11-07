@@ -1,0 +1,19 @@
+﻿body {
+    background-color:gainsboro;
+}
+h2,h3,h4{
+    color:midnightblue
+}
+th {
+    color: midnightblue;
+}
+form{
+    padding-top:2em;
+}
+button{
+    margin-top:1em;
+}
+#home{
+    padding-top:2em;
+    padding-bottom:1em;
+}

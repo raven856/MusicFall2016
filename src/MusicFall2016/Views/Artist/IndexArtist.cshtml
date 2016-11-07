@@ -1,0 +1,28 @@
+﻿@model IEnumerable<MusicFall2016.Models.Artist>
+    @{
+        ViewData["Title"] = "Artists";
+    }
+    <h2>Artist List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateArtist")
+</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Bio</th>
+            </tr>
+        </thead>
+        @foreach (var artist in Model)
+        {
+            <tr>
+                <td>@artist.Name</td>
+                <td>@artist.Bio</td>
+                <td><a asp-action="DetailsArtist" asp-route-id="@artist.ArtistID">Details</a></td>
+                <td><a asp-action="EditArtist" asp-route-id="@artist.ArtistID">Edit</a></td>
+            </tr>
+        }
+        </table>
+

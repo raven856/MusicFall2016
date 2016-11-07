@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MusicFall2016.Models.Album>
+@{
+    ViewData["Title"] = "Albums";
+}
+<h2>Album List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateAlbum")
+</p>
+
+<form>
+    Search: <input type="text" name="searchString"><br>
+    <input type="submit" value="Submit">
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Title)</a></th>
+            <th><a asp-action="IndexAlbum" asp-route-searchString="@ViewBag.Search" asp-route-sortOrder="@ViewBag.ArtistSortParm">@Html.DisplayNameFor(model => model.Artist)</a></th>
+            <th><a asp-action="IndexAlbum" asp-route-searchString="@ViewBag.Search" asp-route-sortOrder="@ViewBag.GenreSortParm">@Html.DisplayNameFor(model => model.Genre)</a></th>
+            <th><a asp-action="IndexAlbum" asp-route-searchString="@ViewBag.Search" asp-route-sortOrder="@ViewBag.PriceSortParm">@Html.DisplayNameFor(model => model.Price)</a></th>
+            <th><a asp-action="IndexAlbum" asp-route-searchString="@ViewBag.Search" asp-route-sortOrder="@ViewBag.LikeSortParm">@Html.DisplayNameFor(model => model.Likes)</a></th>
+        </tr>
+    </thead>
+    @foreach (var album in Model)
+    {
+        <tr>
+            <td>@album.Title </td>
+            <td>@album.Artist.Name</td>
+            <td>@album.Genre.Name </td>
+            <td>@album.Price</td>
+            <td>@album.Likes</td>
+
+            <td>
+                <a asp-action="LikeAlbum" asp-route-id="@album.AlbumID">Like</a>
+                <a asp-action="DetailsAlbum" asp-route-id="@album.AlbumID">Details</a>
+                <a asp-action="EditAlbum" asp-route-id="@album.AlbumID">Edit</a>
+                <a asp-action="DeleteAlbum" asp-route-id="@album.AlbumID">Delete</a>
+
+            </td>
+        </tr>
+    }
+    </table>
+

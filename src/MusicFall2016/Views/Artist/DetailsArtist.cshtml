@@ -1,0 +1,23 @@
+﻿@model IEnumerable<MusicFall2016.Models.Album>
+<h2>Details</h2>
+<div>
+    <h4>Albums</h4>
+
+    <table class="table">
+        <tr>
+            @*<th>@Html.DisplayNameFor(model => model.Artist.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Artist.Bio)</th>*@
+            <th>@Model.First().Artist.Name</th>
+            <th>@Model.First().Artist.Bio</th>
+        </tr>
+        @foreach (var album in Model)
+        {
+            <tr>
+                <td>@album.Title </td>
+                <td>@album.Genre.Name</td>
+                <td>@album.Price</td>
+
+            </tr>
+        }
+   </table>
+</div>

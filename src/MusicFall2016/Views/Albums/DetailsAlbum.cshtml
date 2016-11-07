@@ -1,0 +1,31 @@
+﻿@model MusicFall2016.Models.Album
+@{
+    ViewData["Title"] = "Album Details";
+}
+
+<h4>Album Details</h4>
+<div>
+    <dl class="dl-horizontal">
+        <dt>Title: </dt>
+        <dd>
+            @Model.Title
+        </dd>
+        <dt>Artist: </dt>
+        <dd>
+            @Model.Artist.Name
+        </dd>
+        <dt>Genre: </dt>
+        <dd>
+            @Model.Genre.Name
+        </dd>
+        <dt>Price: </dt>
+        <dd>
+            @Model.Price
+        </dd>
+
+        <a asp-action="EditAlbum" asp-route-id="@Model.AlbumID">Edit</a>
+        <a asp-action="IndexAlbum">Back</a>
+
+    </dl>
+</div>
+

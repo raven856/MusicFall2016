@@ -1,0 +1,38 @@
+﻿@model MusicFall2016.Models.Album
+@{
+    ViewData["Title"] = "Delete Album";
+}
+
+<h4>Album Details</h4>
+<h4>Are you sure you want to delete this?</h4>
+
+<div class="dl-horizontal">
+    <dl>
+        <dt>Title: </dt>
+        <dd>
+            @Model.Title
+        </dd>
+        <dt>Artist: </dt>
+        <dd>
+            @Model.Artist.Name
+        </dd>
+        <dt>Genre: </dt>
+        <dd>
+            @Model.Genre.Name
+        </dd>
+        <dt>Price: </dt>
+        <dd>
+            @Model.Price
+        </dd>    
+    </dl>
+    <div>
+          <div class="form">
+                <form asp-action="DeleteAlbum" class="form-horizontal">
+                 <input type="submit" value="DeleteAlbum" class="btn btn-danger" />
+                 </form>
+            </div>
+            <a asp-action="EditAlbum" asp-route-id="@Model.AlbumID">Edit</a>
+            <a asp-action="IndexAlbum">Back</a>
+    </div>
+
+</div>
