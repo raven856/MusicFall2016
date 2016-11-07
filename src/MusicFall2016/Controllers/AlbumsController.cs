@@ -20,8 +20,6 @@ namespace MusicFall2016.Controllers
         public async Task<IActionResult> IndexAlbum(string sortOrder, string searchString)
         {
 
-            //ViewData["ArtistSortParm"] = String.IsNullOrEmpty(sortOrder) ? "artist_desc" : "";
-
             ViewData["ArtistSortParm"] = sortOrder == "Artist" ? "artist_desc" : "Artist";
             ViewData["GenreSortParm"] = sortOrder == "Genre" ? "genre_desc" : "Genre";
             ViewData["PriceSortParm"] = sortOrder == "Price" ? "price_desc" : "Price";
@@ -65,7 +63,8 @@ namespace MusicFall2016.Controllers
                     albums = albums.OrderBy(s => s.Artist.Name);
                     break; 
             }
-            return View(await albums.AsNoTracking().ToListAsync());
+            // return View(await albums.AsNoTracking().ToList());
+            return View(albums.ToList());
         }        
 
         public IActionResult DetailsAlbum(int? id)
@@ -85,7 +84,7 @@ namespace MusicFall2016.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateAlbum([Bind("AlbumID,Title,GenreID,Price,ArtistID,Likes")] Album album)
+        public ActionResult CreateAlbum(Album album)
         {
             
             if (ModelState.IsValid)
@@ -93,6 +92,19 @@ namespace MusicFall2016.Controllers
                 _db.Albums.Add(album);
                 _db.SaveChanges();
                 return RedirectToAction("IndexAlbum");
+            }
+            if (!string.IsNullOrEmpty(album.Artist.Name))
+            {
+                Artist aArtist = new Artist();
+                aArtist.Name = album.Artist.Name;
+                album.ArtistID = aArtist.ArtistID;
+            }
+            if (!string.IsNullOrEmpty(album.Genre.Name))
+            {
+
+               Genre aGenre = new Genre();
+                aGenre.Name = album.Genre.Name;
+                album.GenreID = aGenre.GenreID;
             }
 
             return View(album);

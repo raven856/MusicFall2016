@@ -9,10 +9,11 @@ namespace MusicFall2016.Models
     {
         public int AlbumID { get; set; }
         [Required(ErrorMessage = "Album title is required")]
-        public string Title { get; set; }
+        public string Title { get; set; } 
         [Range(0.01,100.00)]
         public decimal Price { get; set; }
-        public int Likes { get; set; }
+        public int Likes { get; set; }/// <summary>
+        /// </summary>   commit test
 
         // Foreign key
         [Display(Name = "Artist")]
