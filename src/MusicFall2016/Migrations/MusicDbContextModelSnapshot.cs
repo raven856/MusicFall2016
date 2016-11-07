@@ -19,7 +19,7 @@ namespace MusicFall2016.Migrations
             modelBuilder.Entity("MusicFall2016.Models.Album", b =>
                 {
                     b.Property<int>("AlbumID")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd();//TEST
 
                     b.Property<int>("ArtistID");
 
