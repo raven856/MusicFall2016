@@ -12,6 +12,7 @@ namespace MusicFall2016.Models
             : base(options)
         {
         }
+        //change for github
 
         public DbSet<Album> Albums { get; set; }
         public DbSet<Artist> Artists { get; set; }
