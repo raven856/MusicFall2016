@@ -17,7 +17,7 @@
         <div class="col-sm-10">
             <select class="form-control" asp-for="ArtistID" asp-items="ViewBag.ArtistList"> </select>
             or new Artist
-            <input asp-for="Artist.Name" class="form-control"/>
+            <input asp-for="Artist.Name" name="newArtistName" class="form-control"/>
             <span asp-validation-for="Artist.Name" class="text-danger"></span>
         </div>
 
@@ -26,7 +26,7 @@
         <div class="col-sm-10">
             <select class="form-control" asp-for="GenreID" asp-items="ViewBag.GenreList"></select>
             or new Genre
-            <input asp-for="Genre.Name" class="form-control"/>
+            <input asp-for="Genre.Name" name="newGenreName" class="form-control"/>
             <span asp-validation-for="Genre.Name" class="text-danger"></span>
 
         </div>

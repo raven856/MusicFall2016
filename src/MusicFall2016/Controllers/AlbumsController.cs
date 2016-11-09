@@ -84,27 +84,30 @@ namespace MusicFall2016.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateAlbum(Album album)
+        public ActionResult CreateAlbum(Album album, String newArtistName, String newGenreName)
         {
-            
+            if (!string.IsNullOrEmpty(newArtistName))
+            {
+                Artist aArtist = new Artist();
+                aArtist.Name = newArtistName;
+                _db.Artists.Add(aArtist);
+                _db.SaveChanges();
+                album.ArtistID = aArtist.ArtistID;
+            }
+            if (!string.IsNullOrEmpty(newGenreName))
+            {
+
+               Genre aGenre = new Genre();
+                aGenre.Name = newGenreName;
+                _db.Genres.Add(aGenre);
+                _db.SaveChanges();
+                album.GenreID = aGenre.GenreID;
+            }
             if (ModelState.IsValid)
             {
                 _db.Albums.Add(album);
                 _db.SaveChanges();
                 return RedirectToAction("IndexAlbum");
-            }
-            if (!string.IsNullOrEmpty(album.Artist.Name))
-            {
-                Artist aArtist = new Artist();
-                aArtist.Name = album.Artist.Name;
-                album.ArtistID = aArtist.ArtistID;
-            }
-            if (!string.IsNullOrEmpty(album.Genre.Name))
-            {
-
-               Genre aGenre = new Genre();
-                aGenre.Name = album.Genre.Name;
-                album.GenreID = aGenre.GenreID;
             }
 
             return View(album);
