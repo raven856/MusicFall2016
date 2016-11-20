@@ -69,7 +69,10 @@ namespace MusicFall2016.Controllers
 
         public IActionResult DetailsAlbum(int? id)
         {
+            
             var details = _db.Albums.Include(a => a.Artist).Include(a => a.Genre).Where(i => i.AlbumID == id).Single();
+            ViewBag.Suggestions = _db.Albums.Where(a => (a.GenreID == details.GenreID) || (a.ArtistID == details.AlbumID)).ToList().Take(3);
+    
             return View(details);
         }
 
@@ -78,15 +81,12 @@ namespace MusicFall2016.Controllers
         {
             ViewBag.ArtistList = new SelectList(_db.Artists, "ArtistID", "Name");
             ViewBag.GenreList = new SelectList(_db.Genres, "GenreID", "Name");
-
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateAlbum(Album album)
         {
-            
             if (ModelState.IsValid)
             {
                 _db.Albums.Add(album);
@@ -101,18 +101,12 @@ namespace MusicFall2016.Controllers
             }
             if (!string.IsNullOrEmpty(album.Genre.Name))
             {
-
                Genre aGenre = new Genre();
                 aGenre.Name = album.Genre.Name;
                 album.GenreID = aGenre.GenreID;
             }
-
             return View(album);
-
-
-
         }
-        
         public IActionResult EditAlbum(int? id)
         {
             if (id == null)
@@ -141,6 +135,8 @@ namespace MusicFall2016.Controllers
             }
             return View(album);
         }
+
+        
         //[HttpPost]
         //public IActionResult LikeAlbum([Bind("AlbumID, Title, GenreID, Price, ArtistID, Likes")] Album album)
         public IActionResult LikeAlbum(int? id)

@@ -1,0 +1,29 @@
+﻿@model MusicFall2016.Models.Album
+
+@{ ViewData["Title"] = "Edit"; }
+
+<heAD>
+    <title>Add To Playlist - Music Manager</title>
+
+</heAD>
+
+<BODY>
+
+    <h2>Select the playlist you wish to add to</h2>
+    <form action="/Albums/AddToPlaylist" method="post">
+        <div class="form-inline">
+
+            <input type="hidden" asp-for="AlbumID" value="@Model.AlbumID" />
+
+            <select class="form-control" asp-for="ArtistID" asp-items="ViewBag.ArtistList"> </select>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-info">Add</button>
+                </div>
+            </div>
+        </div>
+        
+    </form>
+
+</BODY>

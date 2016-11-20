@@ -8,9 +8,10 @@ using MusicFall2016.Models;
 namespace MusicFall2016.Migrations
 {
     [DbContext(typeof(MusicDbContext))]
-    partial class MusicDbContextModelSnapshot : ModelSnapshot
+    [Migration("20161116232434_playlistnames")]
+    partial class playlistnames
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -134,6 +135,8 @@ namespace MusicFall2016.Migrations
 
                     b.Property<int>("Likes");
 
+                    b.Property<int?>("PlaylistId");
+
                     b.Property<decimal>("Price");
 
                     b.Property<string>("Title")
@@ -144,6 +147,8 @@ namespace MusicFall2016.Migrations
                     b.HasIndex("ArtistID");
 
                     b.HasIndex("GenreID");
+
+                    b.HasIndex("PlaylistId");
 
                     b.ToTable("Albums");
                 });
@@ -239,21 +244,6 @@ namespace MusicFall2016.Migrations
                     b.ToTable("Playlist");
                 });
 
-            modelBuilder.Entity("MusicFall2016.Models.PlaylistTag", b =>
-                {
-                    b.Property<int>("AlbumId");
-
-                    b.Property<int>("PlaylistId");
-
-                    b.HasKey("AlbumId", "PlaylistId");
-
-                    b.HasIndex("AlbumId");
-
-                    b.HasIndex("PlaylistId");
-
-                    b.ToTable("PlaylistTag");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
@@ -302,19 +292,10 @@ namespace MusicFall2016.Migrations
                         .WithMany()
                         .HasForeignKey("GenreID")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
 
-            modelBuilder.Entity("MusicFall2016.Models.PlaylistTag", b =>
-                {
-                    b.HasOne("MusicFall2016.Models.Album", "Album")
-                        .WithMany("PlaylistTags")
-                        .HasForeignKey("AlbumId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MusicFall2016.Models.Playlist", "Playlist")
-                        .WithMany("PlaylistTags")
-                        .HasForeignKey("PlaylistId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("MusicFall2016.Models.Playlist")
+                        .WithMany("List")
+                        .HasForeignKey("PlaylistId");
                 });
         }
     }
