@@ -25,12 +25,12 @@ namespace MusicFall2016.Models
             .HasKey(t => new { t.AlbumId, t.PlaylistId });
 
             modelBuilder.Entity<PlaylistTag>()
-                .HasOne(pt => pt.Album)
+                .HasOne(pt => pt.aAlbum)
                 .WithMany(p => p.PlaylistTags)
                 .HasForeignKey(pt => pt.AlbumId);
 
             modelBuilder.Entity<PlaylistTag>()
-                .HasOne(pt => pt.Playlist)
+                .HasOne(pt => pt.aPlaylist)
                 .WithMany(t => t.PlaylistTags)
                 .HasForeignKey(pt => pt.PlaylistId);
 
@@ -40,6 +40,7 @@ namespace MusicFall2016.Models
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Playlist> Playlist { get; set; }
+        public DbSet<PlaylistTag> PlaylistTag { get; set; }
 
     }
 }

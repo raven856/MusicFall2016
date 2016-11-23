@@ -32,14 +32,21 @@ namespace MusicFall2016.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-        public IActionResult CreateGenre([Bind("GenreID,Name")] Genre genre)
+         public IActionResult CreateGenre(Genre genre)
         {
-            if (ModelState.IsValid && _db.Artists.Any(a => a.Name != genre.Name))
+            if (ModelState.IsValid && (genre.Name != "") && genre.Name != null)
             {
-                _db.Add(genre);
-                _db.SaveChanges();
-                return RedirectToAction("IndexGenre");
+                if (_db.Genres.Any(a => a.Name == genre.Name))
+                 {
+                    return View(genre);
+                }
+                else
+                {
+                    _db.Add(genre);
+                    _db.SaveChanges();
+                    return RedirectToAction("IndexGenre");
+                }
+                
             }
 
             return View(genre);

@@ -30,7 +30,7 @@ namespace MusicFall2016.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateArtist([Bind("ArtistID, Name, Bio")] Artist artists)
         {
-            if (ModelState.IsValid && !_db.Artists.Any(a => a.Name == artists.Name))
+            if (ModelState.IsValid && !_db.Artists.Any(a => a.Name == artists.Name) && !(artists.Name==null))
             {
                 _db.Add(artists);
                 _db.SaveChanges();

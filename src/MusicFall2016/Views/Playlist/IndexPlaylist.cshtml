@@ -1,30 +1,24 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@model IEnumerable<MusicFall2016.Models.Playlist>
+﻿@model IEnumerable<MusicFall2016.Models.Playlist>
 
-<head>
-</head>
-<body>
-    <h2>Playlists for @Model.FirstOrDefault().Owner</h2>
-    <button class="btn btn-primary">Create Playlist</button>
+<h2>Playlists for @User.Identity.Name</h2>
     <a class="btn btn-lg btn-info" href="/Playlist/CreatePlaylist">Create Playlist</a> 
-    <table class="table">
+ <table class="table">
         <thead>
             <tr>
                 <th>Name</th>
             </tr>
         </thead>
-        @foreach (var playlist in Model)
-        {
-            <tr>
-                <td>@playlist.Name </td>
+    
+            @foreach (var playlist in Model)
+            {
+                <tr>
+                    <td>@playlist.Name </td>
 
-                @*<td>
-                    <a asp-action="LikeAlbum" asp-route-id="@playlist.PlaylistId">Rename</a>
-                    <a asp-action="LikeAlbum" asp-route-id="@playlist.">Delete</a>
-                </td>*@
-            </tr>
-        }
-    </table>
-</body>
+                    <td>
+                        @*<a asp-action="LikeAlbum" asp-route-id="@playlist.PlaylistId">Rename</a>*@
+                        <a asp-action="DetailsPlaylist" asp-route-id="@playlist.PlaylistId">Details</a>
+                        <a asp-action="DeletePlaylist" asp-route-id="@playlist.PlaylistId">Delete</a>
+                    </td>
+                </tr>
+            }
+</table>

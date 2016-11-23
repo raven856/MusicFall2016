@@ -141,16 +141,16 @@ namespace MusicFall2016.Controllers
 
         //
         // POST: /Account/ExternalLogin
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public IActionResult ExternalLogin(string provider, string returnUrl = null)
-        {
-            // Request a redirect to the external login provider.
-            var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
-            return Challenge(properties, provider);
-        }
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult ExternalLogin(string provider, string returnUrl = null)
+        //{
+        //    // Request a redirect to the external login provider.
+        //    var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
+        //    var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+        //    return Challenge(properties, provider);
+        //}
 
         //
         // GET: /Account/ExternalLoginCallback

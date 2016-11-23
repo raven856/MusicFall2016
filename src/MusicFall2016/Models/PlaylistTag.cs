@@ -3,9 +3,9 @@
     public class PlaylistTag
     {
         public int AlbumId { get; set; }
-        public Album Album { get; set; }
+        public Album aAlbum { get; set; }
 
         public int PlaylistId { get; set; }
-        public Playlist Playlist { get; set; }
+        public Playlist aPlaylist { get; set; }
     }
 }

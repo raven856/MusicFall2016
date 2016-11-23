@@ -1,0 +1,29 @@
+﻿@model IEnumerable<MusicFall2016.Models.PlaylistTag> 
+@{
+    ViewData["Title"] = "Playlist Details";
+}
+
+<h4>Playlist Details</h4>
+
+    <div>
+       @* @Model.First().PlaylistTags.Playlist.Name*@
+        <table>
+            @foreach (var PlaylistTag in Model)
+            {
+                <tr>
+                    <td>@PlaylistTag.aAlbum.Title</td>
+                    @*<td>
+                    <a asp-action="LikeAlbum" asp-route-id="@album.AlbumID">Like</a>
+                    <a asp-action="DetailsAlbum" asp-route-id="@album.AlbumID">Details</a>
+                    <a asp-action="EditAlbum" asp-route-id="@album.AlbumID">Edit</a>
+                    <a asp-action="DeleteAlbum" asp-route-id="@album.AlbumID">Delete</a>
+
+                </td>*@
+                </tr>
+            }
+        </table>
+
+        @*<a asp-action="EditAlbum" asp-route-id="@Model.AlbumID">Edit</a>*@
+        <a asp-action="IndexPlaylist" >Back</a>
+</div>
+
